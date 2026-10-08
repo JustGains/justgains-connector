@@ -68,6 +68,26 @@ assert(!search.isError)
 assert(JSON.stringify(search).includes('exerciseCode'))
 console.log('PASS public MCP exercise search')
 
+const resources = await rpc('resources/list')
+const templates = new Set<string>()
+for (const name of ['show_workout', 'generate_workout', 'create_workout', 'get_my_food_diary', 'log_my_food', 'remove_my_food', 'create_route']) {
+  const tool = discovery.tools.find((item: { name: string }) => item.name === name)
+  const resourceUri = tool?._meta?.ui?.resourceUri
+  assert.equal(typeof resourceUri, 'string', `${name}: missing MCP Apps card`)
+  assert.equal(resourceUri, tool._meta['openai/outputTemplate'], `${name}: card differs between hosts`)
+  assert(resources.resources.some((item: { uri: string }) => item.uri === resourceUri))
+  templates.add(resourceUri)
+}
+for (const uri of templates) {
+  const card = await rpc('resources/read', { uri })
+  const content = card.contents[0]
+  assert.equal(content.mimeType, 'text/html;profile=mcp-app')
+  assert(content.text.includes('ui/initialize'), `${uri}: missing MCP Apps initialization`)
+  assert(content.text.length > 1000, `${uri}: missing card content`)
+  assert.equal(content._meta['openai/widgetDomain'], 'https://widget.justgains.com')
+}
+console.log(`PASS ${templates.size} shared MCP Apps cards for workouts, nutrition, and routes`)
+
 const privateResponse = await fetch(`${origin}/mcp/tools/get_my_profile`, {
   method: 'POST', headers: { 'Content-Type': 'application/json' }, body: '{}',
 })
