@@ -1,0 +1,9 @@
+{
+  "name": "justgains-connector",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "verify": "bun scripts/verify.ts"
+  }
+}

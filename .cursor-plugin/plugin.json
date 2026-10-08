@@ -1,0 +1,14 @@
+{
+  "name": "justgains",
+  "version": "1.0.0",
+  "description": "Build and save workouts, check your training history, and log meals in JustGains from Grok Bot or Cursor.",
+  "author": {
+    "name": "JustGains"
+  },
+  "homepage": "https://justgains.com/learn/use-justgains-in-grok",
+  "repository": "https://github.com/JustGains/justgains-connector",
+  "license": "MIT",
+  "keywords": ["fitness", "workouts", "nutrition", "food-diary", "grok-bot", "mcp"],
+  "logo": "assets/justgains.svg",
+  "mcpServers": "mcp.json"
+}
