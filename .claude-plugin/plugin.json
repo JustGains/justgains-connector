@@ -1,0 +1,10 @@
+{
+  "name": "justgains",
+  "version": "1.1.0",
+  "description": "Build and save workouts, check your training history, search exercises, and log meals in JustGains.",
+  "author": { "name": "JustGains", "email": "support@justgains.com", "url": "https://justgains.com" },
+  "homepage": "https://justgains.com/learn/use-justgains-in-grok",
+  "repository": "https://github.com/JustGains/justgains-connector",
+  "license": "MIT",
+  "keywords": ["fitness", "workouts", "nutrition", "food-diary", "mcp"]
+}

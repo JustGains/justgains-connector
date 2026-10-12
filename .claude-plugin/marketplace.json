@@ -1,0 +1,12 @@
+{
+  "name": "justgains",
+  "owner": { "name": "JustGains", "email": "support@justgains.com" },
+  "plugins": [
+    {
+      "name": "justgains",
+      "source": "./",
+      "description": "Build and save workouts, check your training history, search exercises, and log meals in JustGains.",
+      "strict": true
+    }
+  ]
+}

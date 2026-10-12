@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "justgains": {
+      "type": "http",
+      "url": "https://justgains.com/grok/mcp"
+    }
+  }
+}
