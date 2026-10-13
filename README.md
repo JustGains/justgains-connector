@@ -1,5 +1,7 @@
 # JustGains MCP server
 
+[![smithery badge](https://smithery.ai/badge/justgains/justgains)](https://smithery.ai/servers/justgains/justgains)
+
 The official [JustGains](https://justgains.com) MCP server. It lets an AI agent build and save workouts, read a person's training history and progress, search the JustGains exercise library, plan routes, and log meals and bodyweight in their JustGains account.
 
 There are two ways to run it: connect to the hosted server (nothing to install), or run the stdio server in [`mcp-server/`](mcp-server) on your own machine.
