@@ -1,8 +1,13 @@
 {
   "name": "justgains-connector",
   "version": "1.0.0",
+  "description": "Official JustGains MCP connector: manifests and a stdio server for building workouts, reading training history and logging food.",
   "private": true,
   "type": "module",
+  "license": "MIT",
+  "repository": { "type": "git", "url": "git+https://github.com/JustGains/justgains-connector.git" },
+  "bugs": { "url": "https://github.com/JustGains/justgains-connector/issues" },
+  "homepage": "https://justgains.com/learn/use-justgains-in-claude",
   "scripts": {
     "verify": "bun scripts/verify.ts"
   }
