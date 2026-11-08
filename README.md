@@ -4,6 +4,8 @@
 
 The official [JustGains](https://justgains.com) MCP server. It lets an AI agent build and save workouts, read a person's training history and progress, search the JustGains exercise library, plan routes, and log meals and bodyweight in their JustGains account.
 
+[Create a JustGains account](https://justgains.com/auth/register) to connect your own training log and food diary. The [connection guide](https://justgains.com/learn/connect-justgains-to-ai-assistants) covers setup in supported AI assistants.
+
 There are two ways to run it: connect to the hosted server (nothing to install), or run the stdio server in [`mcp-server/`](mcp-server) on your own machine.
 
 ## Connect to the hosted server
@@ -31,6 +33,14 @@ Cursor and other clients that read an `mcpServers` file:
   }
 }
 ```
+
+### LobeHub
+
+Add a remote MCP server in LobeHub using Streamable HTTP and `https://justgains.com/connect/mcp`, then sign in to JustGains when prompted. The hosted connection needs no local installation or API key. Your client must support MCP OAuth authorization.
+
+Try asking: "Review my workouts this week and suggest a 45-minute session for today." To log a meal, say: "Log two eggs, toast and a latte for breakfast in JustGains."
+
+The LobeHub marketplace manifest is [`lhm.plugin.json`](lhm.plugin.json). It declares the hosted endpoint and includes the server's tool schemas, prompts and resources.
 
 ### Grok Bot and Cursor plugin
 
@@ -119,6 +129,9 @@ Tool responses include text and links, so the server works in hosts without MCP 
 ## Links
 
 - [JustGains](https://justgains.com)
+- [Create a JustGains account](https://justgains.com/auth/register)
+- [Connect JustGains to an AI assistant](https://justgains.com/learn/connect-justgains-to-ai-assistants)
+- [Log nutrition with an AI agent](https://justgains.com/learn/log-nutrition-with-ai-agent-mcp)
 - [Use JustGains in Claude](https://justgains.com/learn/use-justgains-in-claude), [ChatGPT](https://justgains.com/learn/use-justgains-in-chatgpt) and [Grok Bot](https://justgains.com/learn/use-justgains-in-grok)
 - [Privacy policy](https://justgains.com/privacy) and [terms](https://justgains.com/terms)
 - Support: support@justgains.com

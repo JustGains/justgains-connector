@@ -1,0 +1,2027 @@
+{
+  "author": "JustGains",
+  "authorUrl": "https://github.com/JustGains",
+  "cloudEndpoint": "https://justgains.com/connect/mcp",
+  "description": "Your JustGains training log, programs and food diary. Plan and save workouts, see how your lifts are moving, and log meals and bodyweight.",
+  "homepage": "https://justgains.com",
+  "icon": "https://justgains.com/brand/justgains-app-icon.png",
+  "identifier": "justgains-justgains-connector",
+  "name": "JustGains",
+  "tags": ["fitness", "workouts", "nutrition", "exercise", "training", "food-diary"],
+  "prompts": [
+    {
+      "name": "plan_todays_workout",
+      "title": "Plan today's workout",
+      "description": "A session built from what you trained this week, what has recovered and where you are in your program.",
+      "arguments": [
+        {
+          "name": "minutes",
+          "description": "How long you have, e.g. 45",
+          "required": false
+        },
+        {
+          "name": "equipment",
+          "description": "What you can use today, e.g. dumbbells only",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "review_my_week",
+      "title": "Review my week",
+      "description": "Sessions, muscle volume, streak, bodyweight and food over the last 7 days, against the 7 before."
+    },
+    {
+      "name": "why_is_my_lift_stuck",
+      "title": "Why is my lift stuck?",
+      "description": "Reads your history for one lift and says whether it has stalled, why, and what to change.",
+      "arguments": [
+        {
+          "name": "exercise",
+          "description": "The lift, e.g. bench press",
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "log_what_i_ate",
+      "title": "Log what I ate",
+      "description": "Saves a meal to your food diary from a plain description and shows the day so far.",
+      "arguments": [
+        {
+          "name": "meal",
+          "description": "What you ate, e.g. two eggs and toast for breakfast",
+          "required": true
+        }
+      ]
+    }
+  ],
+  "resources": [
+    {
+      "name": "nutrition-widget",
+      "title": "JustGains food diary",
+      "uri": "ui://widget/nutrition-v5.html",
+      "mimeType": "text/html;profile=mcp-app",
+      "_meta": {
+        "ui": {
+          "csp": {
+            "connectDomains": [],
+            "resourceDomains": [
+              "https://m.justgains.com",
+              "https://images.openfoodfacts.org"
+            ]
+          }
+        },
+        "openai/widgetCSP": {
+          "connect_domains": [],
+          "resource_domains": [
+            "https://m.justgains.com",
+            "https://images.openfoodfacts.org"
+          ]
+        },
+        "openai/widgetDescription": "Saved foods, portions and daily nutrition totals from your JustGains diary.",
+        "openai/widgetPrefersBorder": true,
+        "openai/widgetDomain": "https://widget.justgains.com"
+      }
+    },
+    {
+      "name": "workout-widget",
+      "title": "Show a workout",
+      "uri": "ui://widget/workout-v84.html",
+      "description": "Displays a workout in the preview editor",
+      "mimeType": "text/html;profile=mcp-app",
+      "_meta": {
+        "ui": {
+          "csp": {
+            "connectDomains": [
+              "https://justgains.com",
+              "https://testing.api.justgains.com",
+              "https://m.justgains.com",
+              "https://w.justgains.com",
+              "https://www.justgains.com",
+              "https://api.justsuperhuman.com"
+            ],
+            "resourceDomains": [
+              "https://justgains.com",
+              "https://testing.api.justgains.com",
+              "https://m.justgains.com",
+              "https://w.justgains.com",
+              "https://www.justgains.com",
+              "https://api.justsuperhuman.com"
+            ],
+            "frameDomains": []
+          },
+          "prefersBorder": true
+        },
+        "openai/widgetDescription": "Displays a workout in the preview editor",
+        "openai/widgetPrefersBorder": true,
+        "openai/widgetCSP": {
+          "connect_domains": [
+            "https://justgains.com",
+            "https://testing.api.justgains.com",
+            "https://m.justgains.com",
+            "https://w.justgains.com",
+            "https://www.justgains.com",
+            "https://api.justsuperhuman.com"
+          ],
+          "resource_domains": [
+            "https://justgains.com",
+            "https://testing.api.justgains.com",
+            "https://m.justgains.com",
+            "https://w.justgains.com",
+            "https://www.justgains.com",
+            "https://api.justsuperhuman.com"
+          ],
+          "frame_domains": [],
+          "redirect_domains": [
+            "https://justgains.com"
+          ]
+        },
+        "openai/widgetDomain": "https://widget.justgains.com"
+      }
+    },
+    {
+      "name": "route-widget",
+      "title": "Route Created",
+      "uri": "ui://widget/route-v3.html",
+      "description": "Shows a generated route on a real map with its stats",
+      "mimeType": "text/html;profile=mcp-app",
+      "_meta": {
+        "ui": {
+          "csp": {
+            "connectDomains": [
+              "https://justgains.com",
+              "https://testing.api.justgains.com",
+              "https://m.justgains.com",
+              "https://w.justgains.com",
+              "https://www.justgains.com",
+              "https://api.justsuperhuman.com"
+            ],
+            "resourceDomains": [
+              "https://justgains.com",
+              "https://testing.api.justgains.com",
+              "https://m.justgains.com",
+              "https://w.justgains.com",
+              "https://www.justgains.com",
+              "https://api.justsuperhuman.com"
+            ],
+            "frameDomains": []
+          },
+          "prefersBorder": true
+        },
+        "openai/widgetDescription": "Shows a generated route on a real map with its stats",
+        "openai/widgetPrefersBorder": true,
+        "openai/widgetCSP": {
+          "connect_domains": [
+            "https://justgains.com",
+            "https://testing.api.justgains.com",
+            "https://m.justgains.com",
+            "https://w.justgains.com",
+            "https://www.justgains.com",
+            "https://api.justsuperhuman.com"
+          ],
+          "resource_domains": [
+            "https://justgains.com",
+            "https://testing.api.justgains.com",
+            "https://m.justgains.com",
+            "https://w.justgains.com",
+            "https://www.justgains.com",
+            "https://api.justsuperhuman.com"
+          ],
+          "frame_domains": [],
+          "redirect_domains": [
+            "https://justgains.com"
+          ]
+        },
+        "openai/widgetDomain": "https://widget.justgains.com"
+      }
+    },
+    {
+      "name": "earlier-widget-versions",
+      "title": "Earlier JustGains card versions",
+      "uriTemplate": "ui://widget/{file}.html",
+      "description": "Resolves widget URIs saved by older chats to the current card",
+      "mimeType": "text/html;profile=mcp-app"
+    }
+  ],
+  "tools": [
+    {
+      "name": "show_workout",
+      "title": "Show a workout",
+      "description": "Display a workout in the preview editor by its ID",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "workoutId": {
+            "type": "string",
+            "description": "The UUID of the workout to display"
+          }
+        },
+        "required": [
+          "workoutId"
+        ],
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "workoutId": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "workout": {},
+          "timestamp": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "workoutId",
+          "timestamp"
+        ],
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "openWorldHint": false
+      },
+      "execution": {
+        "taskSupport": "forbidden"
+      },
+      "_meta": {
+        "securitySchemes": [
+          {
+            "type": "noauth"
+          }
+        ],
+        "ui": {
+          "resourceUri": "ui://widget/workout-v84.html"
+        },
+        "openai/outputTemplate": "ui://widget/workout-v84.html",
+        "openai/toolInvocation/invoking": "Loading workout...",
+        "openai/toolInvocation/invoked": "Workout loaded",
+        "openai/widgetAccessible": false,
+        "openai/resultCanProduceWidget": true
+      }
+    },
+    {
+      "name": "generate_workout",
+      "title": "Generate a workout",
+      "description": "Generate a workout based on a natural language description. Examples: \"30 minute leg workout\", \"Upper body workout with dumbbells\", \"Full body HIIT circuit\", \"Beginner chest and triceps workout\"",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "prompt": {
+            "type": "string",
+            "description": "Description of the workout to generate (e.g., \"20 minute leg workout with dumbbells\")"
+          },
+          "muscleGroups": {
+            "description": "Optional muscle group codes to focus on",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "equipment": {
+            "description": "Optional equipment codes available",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "prompt"
+        ],
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "workoutId": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "summary": {
+            "type": "string"
+          },
+          "workout": {},
+          "error": {
+            "type": "boolean"
+          },
+          "errorMessage": {
+            "type": "string"
+          },
+          "timestamp": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "timestamp"
+        ],
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false
+      },
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": false,
+        "idempotentHint": false,
+        "openWorldHint": true
+      },
+      "execution": {
+        "taskSupport": "forbidden"
+      },
+      "_meta": {
+        "securitySchemes": [
+          {
+            "type": "noauth"
+          }
+        ],
+        "ui": {
+          "resourceUri": "ui://widget/workout-v84.html"
+        },
+        "openai/outputTemplate": "ui://widget/workout-v84.html",
+        "openai/toolInvocation/invoking": "Generating workout...",
+        "openai/toolInvocation/invoked": "Workout generated",
+        "openai/widgetAccessible": false,
+        "openai/resultCanProduceWidget": true
+      }
+    },
+    {
+      "name": "get_progress",
+      "title": "Your progress",
+      "description": "Get the signed-in user's training progress (daily gains, workout volume, steps, active days) over a timeframe. Provide startDate/endDate (YYYY-MM-DD) or a trailing number of days. Defaults to the last 30 days. Requires the user to have connected their JustGains account.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "startDate": {
+            "description": "Start of the window (YYYY-MM-DD). Defaults to 30 days before endDate.",
+            "type": "string"
+          },
+          "endDate": {
+            "description": "End of the window (YYYY-MM-DD). Defaults to today.",
+            "type": "string"
+          },
+          "days": {
+            "description": "Alternatively, the number of most recent days to include (e.g. 7, 30, 90).",
+            "type": "number"
+          }
+        },
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "authenticated": {
+            "type": "boolean"
+          },
+          "range": {
+            "type": "object",
+            "properties": {
+              "startDate": {
+                "type": "string"
+              },
+              "endDate": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "startDate",
+              "endDate"
+            ],
+            "additionalProperties": false
+          },
+          "summary": {},
+          "days": {
+            "type": "array",
+            "items": {}
+          },
+          "error": {
+            "type": "boolean"
+          },
+          "errorMessage": {
+            "type": "string"
+          },
+          "timestamp": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "authenticated",
+          "timestamp"
+        ],
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "openWorldHint": false
+      },
+      "execution": {
+        "taskSupport": "forbidden"
+      },
+      "_meta": {
+        "securitySchemes": [
+          {
+            "type": "oauth2",
+            "scopes": [
+              "progress"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "search_exercises",
+      "title": "Search exercises",
+      "description": "Search the JustGains exercise library by name (optionally filtered by muscle group or equipment). Returns exercise codes and supported measurements to use when building or updating a workout.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "query": {
+            "type": "string",
+            "description": "Exercise name to search, e.g. \"bench press\", \"romanian deadlift\"."
+          },
+          "limit": {
+            "description": "Max results (default 8, max 25).",
+            "type": "number"
+          },
+          "muscleGroup": {
+            "description": "Optional muscle group code to filter by (e.g. CHEST).",
+            "type": "string"
+          },
+          "equipment": {
+            "description": "Optional equipment code to filter by.",
+            "type": "string"
+          }
+        },
+        "required": [
+          "query"
+        ],
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "exercises": {
+            "type": "array",
+            "items": {}
+          },
+          "timestamp": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "exercises",
+          "timestamp"
+        ],
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "openWorldHint": false
+      },
+      "execution": {
+        "taskSupport": "forbidden"
+      },
+      "_meta": {
+        "securitySchemes": [
+          {
+            "type": "noauth"
+          }
+        ]
+      }
+    },
+    {
+      "name": "create_workout",
+      "title": "Save a workout",
+      "description": "Create a workout in the signed-in user's JustGains account, saved under their own creator profile. Provide a title and an ordered list of exercises (by code from search_exercises, or by name to auto-resolve); each exercise can include sets with reps/weight/RPE. Use this for precise, user-specified workouts (use generate_workout for AI-generated ones).",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "description": "Workout title."
+          },
+          "description": {
+            "description": "Optional description.",
+            "type": "string"
+          },
+          "exercises": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "exercise": {
+                  "type": "string",
+                  "description": "Exercise code (e.g. BARBELL.BENCH.PRESS) from search_exercises, or a name to auto-resolve."
+                },
+                "sets": {
+                  "description": "Sets for this exercise (reps/weight/RPE/etc).",
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "reps": {
+                        "type": "number"
+                      },
+                      "weight": {
+                        "type": "number"
+                      },
+                      "unit": {
+                        "description": "Weight unit: kg (default) or lb.",
+                        "type": "string"
+                      },
+                      "rpe": {
+                        "type": "number"
+                      },
+                      "durationSeconds": {
+                        "type": "number"
+                      },
+                      "distance": {
+                        "type": "number"
+                      },
+                      "distanceUnit": {
+                        "type": "string"
+                      },
+                      "type": {
+                        "description": "normal (default), warmup, dropset, myorep, or failure.",
+                        "type": "string",
+                        "enum": [
+                          "normal",
+                          "warmup",
+                          "dropset",
+                          "myorep",
+                          "failure"
+                        ]
+                      }
+                    }
+                  }
+                },
+                "notes": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "exercise"
+              ]
+            },
+            "description": "Ordered exercises."
+          }
+        },
+        "required": [
+          "title",
+          "exercises"
+        ],
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "workoutId": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "workout": {},
+          "unresolved": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "error": {
+            "type": "boolean"
+          },
+          "errorMessage": {
+            "type": "string"
+          },
+          "timestamp": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "timestamp"
+        ],
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false
+      },
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": false,
+        "idempotentHint": false,
+        "openWorldHint": false
+      },
+      "execution": {
+        "taskSupport": "forbidden"
+      },
+      "_meta": {
+        "securitySchemes": [
+          {
+            "type": "oauth2",
+            "scopes": [
+              "workouts"
+            ]
+          }
+        ],
+        "ui": {
+          "resourceUri": "ui://widget/workout-v84.html"
+        },
+        "openai/outputTemplate": "ui://widget/workout-v84.html",
+        "openai/toolInvocation/invoking": "Saving workout...",
+        "openai/toolInvocation/invoked": "Workout saved",
+        "openai/widgetAccessible": false,
+        "openai/resultCanProduceWidget": true
+      }
+    },
+    {
+      "name": "update_workout",
+      "title": "Edit a workout",
+      "description": "Update an existing workout in the user's JustGains account. Provide the workoutId plus any of: new title, new description, or a replacement list of exercises. Call show_workout first if you need the current exercises before modifying them.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "workoutId": {
+            "type": "string",
+            "description": "The UUID of the workout to update."
+          },
+          "title": {
+            "description": "New workout title. Omit to keep the current one.",
+            "type": "string"
+          },
+          "description": {
+            "description": "New workout description. Omit to keep the current one.",
+            "type": "string"
+          },
+          "exercises": {
+            "description": "If provided, REPLACES the workout's exercise list.",
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "exercise": {
+                  "type": "string",
+                  "description": "Exercise code (e.g. BARBELL.BENCH.PRESS) from search_exercises, or a name to auto-resolve."
+                },
+                "sets": {
+                  "description": "Sets for this exercise (reps/weight/RPE/etc).",
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "reps": {
+                        "type": "number"
+                      },
+                      "weight": {
+                        "type": "number"
+                      },
+                      "unit": {
+                        "description": "Weight unit: kg (default) or lb.",
+                        "type": "string"
+                      },
+                      "rpe": {
+                        "type": "number"
+                      },
+                      "durationSeconds": {
+                        "type": "number"
+                      },
+                      "distance": {
+                        "type": "number"
+                      },
+                      "distanceUnit": {
+                        "type": "string"
+                      },
+                      "type": {
+                        "description": "normal (default), warmup, dropset, myorep, or failure.",
+                        "type": "string",
+                        "enum": [
+                          "normal",
+                          "warmup",
+                          "dropset",
+                          "myorep",
+                          "failure"
+                        ]
+                      }
+                    }
+                  }
+                },
+                "notes": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "exercise"
+              ]
+            }
+          }
+        },
+        "required": [
+          "workoutId"
+        ],
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "workoutId": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "workout": {},
+          "unresolved": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "error": {
+            "type": "boolean"
+          },
+          "errorMessage": {
+            "type": "string"
+          },
+          "timestamp": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "timestamp"
+        ],
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false
+      },
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "idempotentHint": true,
+        "openWorldHint": false
+      },
+      "execution": {
+        "taskSupport": "forbidden"
+      },
+      "_meta": {
+        "securitySchemes": [
+          {
+            "type": "oauth2",
+            "scopes": [
+              "workouts"
+            ]
+          }
+        ],
+        "ui": {
+          "resourceUri": "ui://widget/workout-v84.html"
+        },
+        "openai/outputTemplate": "ui://widget/workout-v84.html",
+        "openai/toolInvocation/invoking": "Updating workout...",
+        "openai/toolInvocation/invoked": "Workout updated",
+        "openai/widgetAccessible": false,
+        "openai/resultCanProduceWidget": true
+      }
+    },
+    {
+      "name": "get_workout_history",
+      "title": "Your recent workouts",
+      "description": "List the signed-in user's most recent workouts (title, date, duration, total volume, sets, reps, exercise count). Use to discuss recent training, consistency, and volume trends.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "limit": {
+            "description": "How many recent workouts (default 10, max 20).",
+            "type": "number"
+          }
+        },
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "outputSchema": {
+        "type": "object",
+        "properties": {
+          "authenticated": {
+            "type": "boolean"
+          },
+          "workouts": {
+            "type": "array",
+            "items": {}
+          },
+          "error": {
+            "type": "boolean"
+          },
+          "errorMessage": {
+            "type": "string"
+          },
+          "timestamp": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "authenticated",
+          "timestamp"
+        ],
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "additionalProperties": false
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "openWorldHint": false
+      },
+      "execution": {
+        "taskSupport": "forbidden"
+      },
+      "_meta": {
+        "securitySchemes": [
+          {
+            "type": "oauth2",
+            "scopes": [
+              "progress"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "get_exercise_details",
+      "title": "Exercise details",
+      "description": "Get detailed information about a specific exercise by its code. Returns the exercise name, instructions, equipment, muscles worked, and measurements.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "exerciseCode": {
+            "type": "string",
+            "description": "The unique code of the exercise (e.g., 'BARBELL-BENCH-PRESS', 'BARBELL-SQUAT')"
+          }
+        },
+        "required": [
+          "exerciseCode"
+        ],
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "openWorldHint": false
+      },
+      "execution": {
+        "taskSupport": "forbidden"
+      },
+      "_meta": {
+        "securitySchemes": [
+          {
+            "type": "oauth2",
+            "scopes": [
+              "workouts"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "get_my_workout_logs",
+      "title": "Your logged workouts",
+      "description": "Get the CURRENT user's workout-log history (workouts they actually performed and recorded). Use this whenever the user asks about THEIR OWN workouts - 'my last workout', 'what did I do this week', 'how much did I bench Monday', 'show my recent sessions', 'workouts in March', 'last summer's training'. For any historical timeframe, pass `since` and/or `until` (ISO-8601). The tool will paginate deeper automatically until the requested window is covered (or `maxLogs` is reached). For RANKED questions ('what was my best workout', 'longest session ever', 'highest-volume day'), set `rankBy` ('volume' | 'duration') and `topN`. The tool then sweeps the window, computes the metric per log, and returns the top N logs sorted by that metric instead of newest-first. Returns logs with id, title, date, exercise count, and a per-exercise summary of sets/reps/weight; when ranking, each log also carries totalVolumeKg/totalVolumeDisplay and durationSeconds. Returns an error if the user is not signed in.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "page": {
+            "type": "integer",
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991,
+            "description": "Page number (1-based, default 1). Ignored when `since`/`until` are set."
+          },
+          "pageSize": {
+            "type": "integer",
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991,
+            "description": "Logs per page (default 10, max 50). Acts as a result cap when filtering by date."
+          },
+          "since": {
+            "type": "string",
+            "description": "Optional ISO-8601 lower-bound: only logs with createdAt >= since are returned."
+          },
+          "until": {
+            "type": "string",
+            "description": "Optional ISO-8601 upper-bound: only logs with createdAt <= until are returned."
+          },
+          "maxLogs": {
+            "type": "integer",
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991,
+            "description": "Hard cap on logs returned when scanning a date window (default 100, max 500)."
+          },
+          "rankBy": {
+            "type": "string",
+            "enum": [
+              "recent",
+              "volume",
+              "duration"
+            ],
+            "description": "How to order results. 'recent' (default) is newest-first by createdAt. 'volume' ranks by total tonnage (sum of weight×reps across all sets). 'duration' ranks by `WorkoutLogDuration` (seconds). Set this for 'best workout', 'highest-volume day', 'longest session' questions."
+          },
+          "topN": {
+            "type": "integer",
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991,
+            "description": "When `rankBy` is set, return only the top N logs by that metric (default 5, max 25). Ignored when `rankBy` is unset or 'recent'."
+          }
+        },
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "openWorldHint": false
+      },
+      "execution": {
+        "taskSupport": "forbidden"
+      },
+      "_meta": {
+        "securitySchemes": [
+          {
+            "type": "oauth2",
+            "scopes": [
+              "progress"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "get_my_workout_programs",
+      "title": "Your programs",
+      "description": "Get the CURRENT user's workout-program enrollments and progress. Use whenever the user asks about programs they are following: 'what programs am I on', 'what's my next workout', 'how far through PPL am I', 'show my active programs'. Returns each enrolled program's title, engagement status, last completed day, remaining workouts, the next scheduled workout id (if any), and the program id. Errors if the user is not signed in.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {},
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "openWorldHint": false
+      },
+      "execution": {
+        "taskSupport": "forbidden"
+      },
+      "_meta": {
+        "securitySchemes": [
+          {
+            "type": "oauth2",
+            "scopes": [
+              "workouts"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "get_my_exercise_history",
+      "title": "Your history on a lift",
+      "description": "Get the CURRENT user's recorded history for a SINGLE exercise (by exerciseCode), plus their personal best. Use when the user asks 'show my bench press progression', 'how heavy have I squatted', 'what's my best deadlift', 'when did I last do pull-ups'. You usually want to call search_exercises FIRST to resolve a name to a code. For ANY HISTORICAL TIMEFRAME ('my bench in 2024', 'squats last summer'), pass `since` and/or `until` (ISO-8601). The tool sweeps deeper pages automatically and returns only sessions in the window: DO NOT page manually. Use `maxSessions` to cap the scan. Returns history items (workout id, completed-at, sets) sorted newest-first by default, plus a personalBest summary if any has been recorded. Requires sign-in.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "exerciseCode": {
+            "type": "string",
+            "description": "Uppercase exercise code, e.g. 'BARBELL-BENCH-PRESS'. Use search_exercises if unsure."
+          },
+          "page": {
+            "type": "integer",
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991,
+            "description": "Page number (1-based, default 1). Ignored when `since`/`until` are set."
+          },
+          "pageSize": {
+            "type": "integer",
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991,
+            "description": "History items per page (default 10, max 50)."
+          },
+          "since": {
+            "type": "string",
+            "description": "Optional ISO-8601 lower bound: only sessions completed at or after this time are returned."
+          },
+          "until": {
+            "type": "string",
+            "description": "Optional ISO-8601 upper bound: only sessions completed at or before this time are returned."
+          },
+          "maxSessions": {
+            "type": "integer",
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991,
+            "description": "Hard cap on sessions returned when scanning a date window (default 100, max 500)."
+          }
+        },
+        "required": [
+          "exerciseCode"
+        ],
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "openWorldHint": false
+      },
+      "execution": {
+        "taskSupport": "forbidden"
+      },
+      "_meta": {
+        "securitySchemes": [
+          {
+            "type": "oauth2",
+            "scopes": [
+              "progress"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "search_workout_programs",
+      "title": "Find a program",
+      "description": "Search the workout-program catalog. Returns paginated programs with title, description, total weeks/days, rating, creator, and a public link. Use when the user asks about available programs ('show me programs for hypertrophy', 'find a beginner program', 'what programs do you have'). Optional filters: search keyword, creatorId.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "search": {
+            "type": "string",
+            "description": "Optional keyword to filter program titles/descriptions"
+          },
+          "creatorId": {
+            "type": "string",
+            "description": "Optional creator profile id (GUID) to limit results to one creator"
+          },
+          "page": {
+            "type": "integer",
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991,
+            "description": "Page number (1-based, default 1)"
+          },
+          "pageSize": {
+            "type": "integer",
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991,
+            "description": "Programs per page (default 10, max 50)"
+          }
+        },
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "openWorldHint": false
+      },
+      "execution": {
+        "taskSupport": "forbidden"
+      },
+      "_meta": {
+        "securitySchemes": [
+          {
+            "type": "oauth2",
+            "scopes": [
+              "workouts"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "get_workout_program",
+      "title": "Program details",
+      "description": "Get a workout program (template) by id, including its weeks and days. Use after search_workout_programs or get_my_workout_programs to dig into a specific program. Set includeData=false for a lightweight summary that omits per-day workout content.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "workoutProgramId": {
+            "type": "string",
+            "description": "The workout-program id (GUID)."
+          },
+          "includeData": {
+            "type": "boolean",
+            "description": "Include the full week/day breakdown (default true)."
+          }
+        },
+        "required": [
+          "workoutProgramId"
+        ],
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "openWorldHint": false
+      },
+      "execution": {
+        "taskSupport": "forbidden"
+      },
+      "_meta": {
+        "securitySchemes": [
+          {
+            "type": "oauth2",
+            "scopes": [
+              "workouts"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "set_my_program_engagement",
+      "title": "Start or finish a program",
+      "description": "Update the CURRENT user's enrollment on a workout program. Use to start, abandon, or complete a program: 'start this program', 'I'm done with PPL', 'abandon the cut program'. Requires the program id (use search_workout_programs to find it). Action must be one of: start | abandon | complete. This only changes the user's enrollment status; it never charges, purchases or subscribes to anything.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "workoutProgramId": {
+            "type": "string",
+            "description": "Program GUID to engage with."
+          },
+          "action": {
+            "type": "string",
+            "enum": [
+              "start",
+              "abandon",
+              "complete"
+            ],
+            "description": "Engagement action."
+          }
+        },
+        "required": [
+          "workoutProgramId",
+          "action"
+        ],
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "idempotentHint": false,
+        "openWorldHint": false
+      },
+      "execution": {
+        "taskSupport": "forbidden"
+      },
+      "_meta": {
+        "securitySchemes": [
+          {
+            "type": "oauth2",
+            "scopes": [
+              "workouts"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "create_workout_program",
+      "title": "Build a program",
+      "description": "Create a brand-new multi-week/multi-day workout PROGRAM for the user and save it to their account. You write the FULL program out as plain text in `programText`: a title, then each week and day with that day's exercises and their sets × reps (add weight or RPE when relevant). Rest days can be written as 'Rest'. The text is parsed into a structured program (real exercises are matched automatically) and saved. Use this whenever the user asks you to build / create / make / design a training PROGRAM, a multi-week or multi-day plan (PPL, full-body split, 5x5, a cut block, etc.). For a single one-off workout use generate_workout instead. If the user pasted their own program, pass it through verbatim.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "programText": {
+            "type": "string",
+            "description": "The complete program written as plain text: a title line, then each week and day with the day's exercises and sets × reps (e.g. 'Week 1, Day 1 Push: Barbell Bench Press 4x6, Overhead Press 3x8 ...'). Include rest days. Be specific and complete, this is what gets parsed."
+          },
+          "programTitle": {
+            "type": "string",
+            "description": "Optional explicit program title. If omitted, a title is taken/derived from the text."
+          }
+        },
+        "required": [
+          "programText"
+        ],
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": false,
+        "idempotentHint": false,
+        "openWorldHint": false
+      },
+      "execution": {
+        "taskSupport": "forbidden"
+      },
+      "_meta": {
+        "securitySchemes": [
+          {
+            "type": "oauth2",
+            "scopes": [
+              "workouts"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "create_route",
+      "title": "Plan a route",
+      "description": "Generate a real, road-and-path-snapped ROUTE (a plannable run / ride / walk / hike path) starting and ending at the user's location, and save it to their Routes tab. Use when the user asks you to build / make / plan a route, a running loop, a bike ride, etc. Use startLat/startLng from the app-data block's current location when present, or coordinates the user explicitly gives; NEVER guess them. If neither is available, OMIT startLat/startLng and the route starts from the user's last known training location (the start of their most recent GPS activity or saved route). Before calling, make sure you know the activity type and the distance they want (ask if they haven't said). The generated route follows actual streets and paths and lands close to the requested distance.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "startLat": {
+            "type": "number",
+            "description": "Start latitude. Only pass a real value (app-data current location or user-given); omit to fall back to the user's last known training location."
+          },
+          "startLng": {
+            "type": "number",
+            "description": "Start longitude. Only pass a real value; omit to fall back to the user's last known training location."
+          },
+          "distanceKm": {
+            "type": "number",
+            "description": "Target route distance in kilometres (0.5–200)."
+          },
+          "activityType": {
+            "type": "string",
+            "enum": [
+              "run",
+              "ride",
+              "walk",
+              "hike"
+            ],
+            "description": "What the route is for. 'ride' uses cycling roads; the rest use walking/running paths."
+          },
+          "routeShape": {
+            "type": "string",
+            "enum": [
+              "loop",
+              "out_and_back"
+            ],
+            "description": "loop = a circuit back to the start (default); out_and_back = straight out to a turnaround point and back the same way."
+          },
+          "direction": {
+            "type": "string",
+            "enum": [
+              "north",
+              "northeast",
+              "east",
+              "southeast",
+              "south",
+              "southwest",
+              "west",
+              "northwest"
+            ],
+            "description": "Optional compass direction to head in. Omit for a sensible random direction."
+          },
+          "name": {
+            "type": "string",
+            "description": "Short friendly route name, e.g. '5K Morning Loop'. Omit to auto-name."
+          }
+        },
+        "required": [
+          "distanceKm",
+          "activityType"
+        ],
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": false,
+        "idempotentHint": false,
+        "openWorldHint": false
+      },
+      "execution": {
+        "taskSupport": "forbidden"
+      },
+      "_meta": {
+        "securitySchemes": [
+          {
+            "type": "oauth2",
+            "scopes": [
+              "workouts"
+            ]
+          }
+        ],
+        "ui": {
+          "resourceUri": "ui://widget/route-v3.html"
+        },
+        "openai/outputTemplate": "ui://widget/route-v3.html",
+        "openai/toolInvocation/invoking": "Mapping your route...",
+        "openai/toolInvocation/invoked": "Route created",
+        "openai/widgetAccessible": false,
+        "openai/resultCanProduceWidget": true
+      }
+    },
+    {
+      "name": "get_my_weight_history",
+      "title": "Your bodyweight",
+      "description": "Get the CURRENT user's bodyweight log (entries plus summary: current, lowest, highest). Use whenever the user asks about their bodyweight: 'what do I weigh now', 'how much have I lost', 'show my weight trend', 'when did I last weigh in', 'what was my lightest'. For ANY HISTORICAL TIMEFRAME ('what did I weigh in March', 'last summer', 'between Jan 1 and Feb 14'), pass `since` and/or `until` (ISO-8601). Summary stats (current/lowest/highest) are returned for BOTH the full history and, when a window is set, the windowed slice. Optional `limit` truncates the entry list. Requires sign-in.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "limit": {
+            "type": "integer",
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991,
+            "description": "Max recent entries to return (default 30, max 200)."
+          },
+          "since": {
+            "type": "string",
+            "description": "Optional ISO-8601 lower bound: only entries recorded at or after this time are included."
+          },
+          "until": {
+            "type": "string",
+            "description": "Optional ISO-8601 upper bound: only entries recorded at or before this time are included."
+          }
+        },
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "openWorldHint": false
+      },
+      "execution": {
+        "taskSupport": "forbidden"
+      },
+      "_meta": {
+        "securitySchemes": [
+          {
+            "type": "oauth2",
+            "scopes": [
+              "progress"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "log_my_weight",
+      "title": "Log bodyweight",
+      "description": "Record a new bodyweight entry for the CURRENT user. Pass `weightKg` (kilograms) OR `weightLbs` (pounds), the tool converts lbs → kg before storage. If the user spoke in pounds, prefer `weightLbs` so the round-trip is exact. `recordedAt` is optional ISO-8601 (defaults to now). Valid stored range: 25kg–500kg (≈55–1100 lbs); the API rejects values outside this.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "weightKg": {
+            "type": "number",
+            "description": "Bodyweight in kilograms (25–500). Provide this OR `weightLbs`, not both."
+          },
+          "weightLbs": {
+            "type": "number",
+            "description": "Bodyweight in pounds (≈55–1100). Provide this OR `weightKg`, not both. The tool converts to kg."
+          },
+          "recordedAt": {
+            "type": "string",
+            "description": "Optional ISO-8601 timestamp. Defaults to now (UTC)."
+          },
+          "notes": {
+            "type": "string",
+            "description": "Optional notes the user mentioned (mood, time of day, etc.)."
+          }
+        },
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": false,
+        "idempotentHint": false,
+        "openWorldHint": false
+      },
+      "execution": {
+        "taskSupport": "forbidden"
+      },
+      "_meta": {
+        "securitySchemes": [
+          {
+            "type": "oauth2",
+            "scopes": [
+              "progress"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "get_my_food_diary",
+      "title": "Your food diary",
+      "description": "Read the CURRENT user's food diary, daily totals, targets, local date/timezone and last 30 days of foods (up to 100 entries). Call when the user wants to see their diary, when a request depends on a past day ('same as yesterday'), or to find entries to correct or remove that no recent food result returned. Routine logging does not need it: log_my_food resolves the local date and checks recent entries on the backend. Never infer that a planned meal was eaten.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "entryDate": {
+            "type": "string",
+            "description": "YYYY-MM-DD local diary date; defaults to the user's today."
+          }
+        },
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "openWorldHint": false
+      },
+      "execution": {
+        "taskSupport": "forbidden"
+      },
+      "_meta": {
+        "securitySchemes": [
+          {
+            "type": "oauth2",
+            "scopes": [
+              "progress"
+            ]
+          }
+        ],
+        "ui": {
+          "resourceUri": "ui://widget/nutrition-v5.html"
+        },
+        "openai/outputTemplate": "ui://widget/nutrition-v5.html",
+        "openai/toolInvocation/invoking": "Reading your diary…",
+        "openai/toolInvocation/invoked": "Food diary loaded",
+        "openai/widgetAccessible": false
+      }
+    },
+    {
+      "name": "search_foods",
+      "title": "Find a food",
+      "description": "Search the cached food catalog and matching recent diary entries. This never waits on an external nutrition provider. Use only when the user asks to find or compare foods. For logging, call log_my_food directly with estimates instead. Results contain up to five identity-checked candidates and three possible variants; missing results do not prevent logging an estimate. Preserve brand and raw/cooked preparation.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "query": {
+            "type": "string",
+            "minLength": 2,
+            "maxLength": 200
+          }
+        },
+        "required": [
+          "query"
+        ],
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "openWorldHint": false
+      },
+      "execution": {
+        "taskSupport": "forbidden"
+      },
+      "_meta": {
+        "securitySchemes": [
+          {
+            "type": "oauth2",
+            "scopes": [
+              "progress"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "log_my_food",
+      "title": "Log food",
+      "description": "Log foods the CURRENT user actually ate in one call. Call this directly: do not search_foods, browse, research nutrition, or read the diary first. Send every food/drink with quantityGrams and a quick estimatedMacros fallback for the whole portion; round estimates rather than researching exact numbers. The API checks recent foods and the cached catalog, prefers reliable nutrition, and labels estimate fallbacks. Preserve brand and raw/cooked preparation. Use servingQuantity/servingUnit for counts and portionEstimated=true for guessed weights. Briefly disclose assumptions; do not ask for missing flavor or grams. Use a new requestId per meal and keep it unchanged on retries. Follow-up corrections reuse diaryEntryId and expectedUpdatedAt from the last result, keep the serving count, and omit grams to recalculate a corrected catalog serving. Only read the diary for a past-day reference, an explicit repeat, or a correction/removal whose ID is unavailable. Use recentEntryId only for an explicit repeat. After success, give a short confirmation; do not call another tool to verify the save or repeat the card. Never log plans or hypothetical meals.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "requestId": {
+            "type": "string",
+            "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$",
+            "description": "New UUID per meal, unchanged on retry."
+          },
+          "entryDate": {
+            "type": "string",
+            "description": "YYYY-MM-DD in the user's timezone; defaults to their today."
+          },
+          "mealSlot": {
+            "type": "string",
+            "enum": [
+              "BREAKFAST",
+              "LUNCH",
+              "DINNER",
+              "SNACK"
+            ]
+          },
+          "loggedAt": {
+            "type": "string",
+            "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z|([+-](?:[01]\\d|2[0-3]):[0-5]\\d)))$",
+            "description": "Time eaten with UTC offset, if known."
+          },
+          "items": {
+            "minItems": 1,
+            "maxItems": 30,
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "diaryEntryId": {
+                  "type": "string",
+                  "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$",
+                  "description": "For a correction only: the existing diary entry to replace, never a new UUID. Omit for a new food."
+                },
+                "expectedUpdatedAt": {
+                  "type": "string",
+                  "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z|([+-](?:[01]\\d|2[0-3]):[0-5]\\d)))$",
+                  "description": "Required with diaryEntryId: copy updatedAt (or createdAt when updatedAt is absent) from a fresh diary read. A stale correction fails without adding a duplicate; reread before retrying."
+                },
+                "assumptionNote": {
+                  "type": "string",
+                  "maxLength": 500,
+                  "description": "Briefly disclose assumed variety, brand or serving weight. Saved visibly with the food; omit once those details are confirmed."
+                },
+                "name": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 200,
+                  "description": "Food identity including preparation, e.g. cooked brown rice."
+                },
+                "brand": {
+                  "type": "string",
+                  "description": "The user's brand, or an assumed brand explicitly disclosed in assumptionNote."
+                },
+                "quantityGrams": {
+                  "type": "number",
+                  "exclusiveMinimum": 0,
+                  "maximum": 10000,
+                  "description": "Total grams for this portion. portionEstimated=true marks a weight the user did not supply; a known catalog serving can replace estimated grams."
+                },
+                "servingQuantity": {
+                  "type": "number",
+                  "exclusiveMinimum": 0,
+                  "maximum": 100
+                },
+                "servingUnit": {
+                  "type": "string",
+                  "description": "Catalog serving label, or a display unit when grams are supplied."
+                },
+                "recentEntryId": {
+                  "type": "string",
+                  "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$",
+                  "description": "An entry from the user's recent diary when they explicitly mean the same food/portion. Omit grams to reuse its portion."
+                },
+                "portionEstimated": {
+                  "type": "boolean"
+                },
+                "estimatedMacros": {
+                  "type": "object",
+                  "properties": {
+                    "kcal": {
+                      "type": "number",
+                      "minimum": 0
+                    },
+                    "proteinG": {
+                      "type": "number",
+                      "minimum": 0
+                    },
+                    "carbG": {
+                      "type": "number",
+                      "minimum": 0
+                    },
+                    "fatG": {
+                      "type": "number",
+                      "minimum": 0
+                    }
+                  },
+                  "required": [
+                    "kcal",
+                    "proteinG",
+                    "carbG",
+                    "fatG"
+                  ],
+                  "additionalProperties": {},
+                  "description": "Estimated nutrition totals for the whole portion (not per 100g). Reliable catalog values take precedence when available; otherwise these values are saved and marked as estimated."
+                }
+              },
+              "required": [
+                "name"
+              ],
+              "additionalProperties": {}
+            }
+          }
+        },
+        "required": [
+          "requestId",
+          "mealSlot",
+          "items"
+        ],
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "idempotentHint": true,
+        "openWorldHint": false
+      },
+      "execution": {
+        "taskSupport": "forbidden"
+      },
+      "_meta": {
+        "securitySchemes": [
+          {
+            "type": "oauth2",
+            "scopes": [
+              "progress"
+            ]
+          }
+        ],
+        "ui": {
+          "resourceUri": "ui://widget/nutrition-v5.html"
+        },
+        "openai/outputTemplate": "ui://widget/nutrition-v5.html",
+        "openai/toolInvocation/invoking": "Saving your meal…",
+        "openai/toolInvocation/invoked": "Food diary saved",
+        "openai/widgetAccessible": false
+      }
+    },
+    {
+      "name": "remove_my_food",
+      "title": "Remove food",
+      "description": "Remove foods the CURRENT user asks to delete from their diary, e.g. 'remove those crackers', 'I did not eat that', or 'delete breakfast'. Identify the exact saved entries from the user's request and the latest food result (log, removal or diary read); call get_my_food_diary for the relevant day only if no recent result has them. Pass their diaryEntryId and expectedUpdatedAt exactly as that result gives them. Remove only requested entries; ask which one if the target is ambiguous. For an entire meal, pass all entries in that meal, not the whole day. Removing one pack from a two-pack entry is a portion correction with log_my_food, not removal of the entire row. The API removes the batch atomically, updates day totals and syncs deletion to mobile. Repeating the same IDs is safe. This removes diary entries, never catalog foods. Do not call unless the user requested removal.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "minItems": 1,
+            "maxItems": 30,
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "diaryEntryId": {
+                  "type": "string",
+                  "pattern": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$",
+                  "description": "Exact saved entry ID from get_my_food_diary."
+                },
+                "expectedUpdatedAt": {
+                  "type": "string",
+                  "pattern": "^(?:(?:\\d\\d[2468][048]|\\d\\d[13579][26]|\\d\\d0[48]|[02468][048]00|[13579][26]00)-02-29|\\d{4}-(?:(?:0[13578]|1[02])-(?:0[1-9]|[12]\\d|3[01])|(?:0[469]|11)-(?:0[1-9]|[12]\\d|30)|(?:02)-(?:0[1-9]|1\\d|2[0-8])))T(?:(?:[01]\\d|2[0-3]):[0-5]\\d:[0-5]\\d(?:\\.\\d+)?(?:Z|([+-](?:[01]\\d|2[0-3]):[0-5]\\d)))$",
+                  "description": "Copy updatedAt, or createdAt if absent, from the latest diary read."
+                }
+              },
+              "required": [
+                "diaryEntryId",
+                "expectedUpdatedAt"
+              ],
+              "additionalProperties": {}
+            }
+          }
+        },
+        "required": [
+          "items"
+        ],
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "idempotentHint": true,
+        "openWorldHint": false
+      },
+      "execution": {
+        "taskSupport": "forbidden"
+      },
+      "_meta": {
+        "securitySchemes": [
+          {
+            "type": "oauth2",
+            "scopes": [
+              "progress"
+            ]
+          }
+        ],
+        "ui": {
+          "resourceUri": "ui://widget/nutrition-v5.html"
+        },
+        "openai/outputTemplate": "ui://widget/nutrition-v5.html",
+        "openai/toolInvocation/invoking": "Removing food…",
+        "openai/toolInvocation/invoked": "Food removed",
+        "openai/widgetAccessible": false
+      }
+    },
+    {
+      "name": "get_my_profile",
+      "title": "Your profile",
+      "description": "Fetch the CURRENT user's full profile snapshot: name, email, bio, measurement system, timezone, plus private meta (age/birth date, height, gender, experience level, fitness goals, injury tracking, baseline weight). Use whenever the user asks 'what's my profile', 'how old am I', 'what's my height', 'what experience level am I set as', 'what goals do I have'. Pair with `update_my_profile` if they want to change any of these.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {},
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "openWorldHint": false
+      },
+      "execution": {
+        "taskSupport": "forbidden"
+      },
+      "_meta": {
+        "securitySchemes": [
+          {
+            "type": "oauth2",
+            "scopes": [
+              "profile"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "update_my_profile",
+      "title": "Update your profile",
+      "description": "Patch the CURRENT user's profile. Only the fields you supply are changed. Top-level: bio, measurementSystem ('metric' | 'imperial'), userTimezone (IANA), autoStopAbandonedWorkoutsSeconds (0–86400). Private meta (under privateMeta.* keys): birthDate (ISO-8601), heightCm, gender ('Male'|'Female'|'MTF'|'FTM'), experienceLevel ('Beginner'|'Intermediate'|'Advanced'), fitnessGoals (string array). Use when the user asks to change any of these. Confirm before destructive replacements (e.g., overwriting fitnessGoals).",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "bio": {
+            "type": "string",
+            "description": "Public bio (max 500 chars)."
+          },
+          "measurementSystem": {
+            "type": "string",
+            "enum": [
+              "metric",
+              "imperial"
+            ],
+            "description": "Display unit system."
+          },
+          "userTimezone": {
+            "type": "string",
+            "description": "IANA timezone, e.g. 'America/New_York'."
+          },
+          "autoStopAbandonedWorkoutsSeconds": {
+            "type": "integer",
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991,
+            "description": "Seconds before an idle workout is auto-stopped (0–86400)."
+          },
+          "privateMeta": {
+            "type": "object",
+            "properties": {
+              "birthDate": {
+                "type": "string",
+                "description": "ISO-8601 date."
+              },
+              "heightCm": {
+                "type": "number",
+                "description": "Height in cm."
+              },
+              "gender": {
+                "type": "string",
+                "enum": [
+                  "Male",
+                  "Female",
+                  "MTF",
+                  "FTM"
+                ]
+              },
+              "experienceLevel": {
+                "type": "string",
+                "enum": [
+                  "Beginner",
+                  "Intermediate",
+                  "Advanced"
+                ]
+              },
+              "fitnessGoals": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "Replace fitness goals with this array."
+              }
+            },
+            "additionalProperties": {}
+          }
+        },
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "idempotentHint": true,
+        "openWorldHint": true
+      },
+      "execution": {
+        "taskSupport": "forbidden"
+      },
+      "_meta": {
+        "securitySchemes": [
+          {
+            "type": "oauth2",
+            "scopes": [
+              "profile"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "get_my_recovery_analytics",
+      "title": "Muscle recovery",
+      "description": "Get the CURRENT user's recovery analytics: last workout date, days since last workout, and per-muscle-group weekly target / completed set counts / target percentage / last-worked date. Use for 'am I recovered enough to train chest', 'what muscles am I behind on', 'have I hit my weekly back volume', 'when did I last train shoulders'. For HISTORICAL questions ('how was my recovery the week of June 1, 2024'), pass `asOfDate` (ISO-8601). The whole calculation anchors to that date, week boundaries, days-since-last-workout, and recency buckets all shift back accordingly.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "asOfDate": {
+            "type": "string",
+            "description": "Optional ISO-8601 anchor date: recovery data is computed as if 'now' were this date. Use for retrospective recovery questions like 'how was my recovery during the week of June 1, 2024'."
+          }
+        },
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "openWorldHint": false
+      },
+      "execution": {
+        "taskSupport": "forbidden"
+      },
+      "_meta": {
+        "securitySchemes": [
+          {
+            "type": "oauth2",
+            "scopes": [
+              "progress"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "summarize_my_week",
+      "title": "Your training week",
+      "description": "Bundle a one-call snapshot of the CURRENT user's recent training: count of workout logs in the last `days` (default 7), per-muscle-group recovery data, weight delta vs `days` ago, and the most recent log id. Use for \"how was my week\", \"quick recap\", \"how am I doing\". For HISTORICAL questions ('how was my week ending June 1, 2024'), pass `endDate` (ISO-8601), the window becomes (endDate - days, endDate) instead of anchoring to today. Saves the agent from chaining get_my_workout_logs + get_my_recovery_analytics + get_my_weight_history.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "days": {
+            "type": "integer",
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991,
+            "description": "Lookback window in days (default 7, max 60)."
+          },
+          "endDate": {
+            "type": "string",
+            "description": "Optional ISO-8601 anchor date, the window ends at this date instead of now. Use for retrospective summaries like 'how was my week ending Mar 30, 2024'."
+          }
+        },
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "openWorldHint": false
+      },
+      "execution": {
+        "taskSupport": "forbidden"
+      },
+      "_meta": {
+        "securitySchemes": [
+          {
+            "type": "oauth2",
+            "scopes": [
+              "progress"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "analyze_my_consistency",
+      "title": "Your streaks",
+      "description": "Analyze the CURRENT user's workout consistency over a window: longest streak, current streak (the same rule as the app: up to two rest days keep a streak alive), distinct training days, total logs, and average workouts per week. Use for 'how's my consistency', 'what's my streak', 'how often have I trained lately'. Default window 60 days, max 365. For HISTORICAL consistency questions ('how consistent was I in 2024'), pass `endDate` (ISO-8601), the window becomes (endDate: days, endDate). Current-streak only counts when the window ends today/yesterday.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "days": {
+            "type": "integer",
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991,
+            "description": "Lookback window in days (default 60, max 365)."
+          },
+          "endDate": {
+            "type": "string",
+            "description": "Optional ISO-8601 anchor date, the window ends here instead of today. Use for retrospective consistency like 'how consistent was I in 2024'."
+          }
+        },
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "openWorldHint": false
+      },
+      "execution": {
+        "taskSupport": "forbidden"
+      },
+      "_meta": {
+        "securitySchemes": [
+          {
+            "type": "oauth2",
+            "scopes": [
+              "progress"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "compare_my_weeks",
+      "title": "Compare your weeks",
+      "description": "Compare the CURRENT user's last `windowDays` (default 7) against the prior `windowDays`. Use for 'am I training more than last week', 'did I lose weight faster this week', 'is this week better'. Returns workout-count delta and weight delta between the two windows. For HISTORICAL comparisons ('how did the week of June 1, 2024 compare to the week before'), pass `endDate` (ISO-8601). The current window becomes (endDate - windowDays, endDate) and the prior window slides back to match.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "windowDays": {
+            "type": "integer",
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991,
+            "description": "Length of each window in days (default 7, max 30)."
+          },
+          "endDate": {
+            "type": "string",
+            "description": "Optional ISO-8601 anchor: current window ends at this date instead of now. Prior window slides back by `windowDays` accordingly."
+          }
+        },
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "openWorldHint": false
+      },
+      "execution": {
+        "taskSupport": "forbidden"
+      },
+      "_meta": {
+        "securitySchemes": [
+          {
+            "type": "oauth2",
+            "scopes": [
+              "progress"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "get_my_top_exercises",
+      "title": "Your top lifts",
+      "description": "Cross-exercise leaderboard for the CURRENT user. Use whenever the user asks about their TOP / MOST / HEAVIEST exercises across the board: 'what's my most used exercise', 'top 3 lifts', 'heaviest exercises', 'what do I lift the most'. Scans the user's workout logs (default 365 days, capped at `maxLogsScanned`) and returns three rankings in one call: byFrequency (session + set count), byMaxWeight (peak single-set weight), and byVolume (total tonnage). Each entry includes the exerciseCode + name so the agent can drill into a specific lift via get_my_exercise_history. For HISTORICAL questions ('most-used in 2024', 'top lifts last summer'), pass `since`/`until` (ISO-8601). Use `topN` to widen/narrow each list (default 5, max 25). Requires sign-in.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "topN": {
+            "type": "integer",
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991,
+            "description": "How many entries to return per ranking (default 5, max 25)."
+          },
+          "since": {
+            "type": "string",
+            "description": "Optional ISO-8601 lower bound: only logs with createdAt >= since are scanned."
+          },
+          "until": {
+            "type": "string",
+            "description": "Optional ISO-8601 upper bound: only logs with createdAt <= until are scanned."
+          },
+          "maxLogsScanned": {
+            "type": "integer",
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991,
+            "description": "Hard cap on logs scanned across the window (default 200, max 500). Bump for long histories."
+          },
+          "lookbackDays": {
+            "type": "integer",
+            "minimum": -9007199254740991,
+            "maximum": 9007199254740991,
+            "description": "When neither `since` nor `until` is set, how far back to scan (default 365, max 1825)."
+          }
+        },
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "openWorldHint": false
+      },
+      "execution": {
+        "taskSupport": "forbidden"
+      },
+      "_meta": {
+        "securitySchemes": [
+          {
+            "type": "oauth2",
+            "scopes": [
+              "progress"
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "version": "1.0.0"
+}
